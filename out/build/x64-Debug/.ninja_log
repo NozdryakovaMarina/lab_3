@@ -1,0 +1,25 @@
+# ninja log v5
+46	1984	7241050602865660	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj	3cc5a5ad163b944
+1	1193	7241122772654380	CMakeFiles/sorting.dir/sorting.cpp.obj	cfb2634745868deb
+4	1694	7241122777652849	CMakeFiles/tests.dir/tests.cpp.obj	470e4d9ff0293a7c
+44	3277	7241050615722187	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/__/googletest/src/gtest-all.cc.obj	2764bffc0d3681a
+59	1751	7241050600517323	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	6cdcf0669a539fb6
+21	2419	7241050607171992	_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	e129d91bafa16379
+41	2408	7241050607076929	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock-all.cc.obj	c7d5ccdbcf83203a
+55	3342	7241050616387253	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	4ba05bb4b8615c64
+24	3394	7241050616858713	_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/__/googletest/src/gtest-all.cc.obj	909f3b1460ac4022
+2	1014	7241123250558121	CMakeFiles/console.dir/console.cpp.obj	64978157ec2a2479
+11	98	7241050831534001	lib/gmock_main.lib	13f74995cf808fbc
+14	178	7241050832328836	lib/gtest.lib	16e0228984bf6d11
+8	190	7241050832402356	lib/gmock.lib	ea62a44d5f2c8d35
+178	213	7241050832747412	lib/gtest_main.lib	1769c2f3af96f56a
+1193	1382	7241122772654380	sorting.dll	3a7780618701a252
+1193	1382	7241122772654380	sorting.lib	3a7780618701a252
+1694	1933	7241122779629548	tests.exe	fca2809778bdb255
+1015	1143	7241123251588125	console.exe	4e2c3c05587d2f94
+2	890	7241123466305853	CMakeFiles/console.dir/console.cpp.obj	64978157ec2a2479
+890	1020	7241123467391416	console.exe	4e2c3c05587d2f94
+2	926	7241123773846571	CMakeFiles/console.dir/console.cpp.obj	64978157ec2a2479
+926	1064	7241123774997574	console.exe	4e2c3c05587d2f94
+2	921	7241123985249002	CMakeFiles/console.dir/console.cpp.obj	64978157ec2a2479
+921	1053	7241123986339001	console.exe	4e2c3c05587d2f94
