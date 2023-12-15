@@ -1,10 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <cmath>
 #include <vector>
 #include <stdexcept>
-#include <complex>
 #include <random>
 
 using namespace std;
@@ -56,6 +54,14 @@ namespace sorting {
    }
 
    template<typename T>
+   void swap(T& a, T& b, stats& stats) {
+	   T temp = a;
+	   a = b;
+	   b = temp;
+	   stats.copy_count += 3;
+   }
+
+   template<typename T>
    stats insert_sort(vector<T>& arr) {
 	   stats stats;
 
@@ -77,10 +83,9 @@ namespace sorting {
 	   return stats;
    }
 
-   // Функция для разделения массива на подмассивы и возврата индекса опорного элемента
    template<typename T>
    int partition(std::vector<T>& arr, int low, int high, stats& s) {
-	   int pivot = arr[high];
+	   T pivot = arr[high];
 	   int i = (low - 1);
 	   for (int j = low; j <= high - 1; j++) {
 		   s.comparison_count++;
@@ -95,7 +100,6 @@ namespace sorting {
 	   return (i + 1);
    }
 
-   // Функция быстрой сортировки
    template<typename T>
    void quick_sort(std::vector<T>& arr, int low, int high, stats& s) {
 	   if (low < high) {
@@ -105,7 +109,6 @@ namespace sorting {
 	   }
    }
 
-   // Функция для вызова быстрой сортировки
    template<typename T>
    stats quick_sort(std::vector<T>& arr) {
 	   stats s;
@@ -114,7 +117,7 @@ namespace sorting {
    }
 
    template<typename T>
-   stats combSort(std::vector<T>& arr) {
+   stats comb_sort(vector<T>& arr) {
 	   stats s;
 	   int n = arr.size();
 	   int gap = n;
@@ -155,4 +158,47 @@ namespace sorting {
 	   T x = segment(generator);
 	   return x;
    }
+
+   template<typename T>
+   vector<T> random_arr(size_t size) {
+	   vector<T> arr;
+	   int min = 1;
+	   int max = 100000;
+	   for (int i = 0; i < size; ++i)
+		   arr.push_back(random(min, max));
+	   return arr;
+   }
+
+   template <typename T>
+   stats average_stats(size_t size, stats(*sorted_f)(vector<T>& arr)) {
+	   stats average;
+
+	   for (int i = 0; i < 100; i++) {
+		   /*vector<T> a = random_arr(size);
+		   average += sorted_f(a);
+		   cout << i << " " << size << endl;*/
+	   }
+
+	   average.comparison_count /= 100;
+	   average.copy_count /= 100;
+
+	   return average;
+   }
+
+   template<typename T>
+   vector<T> sorted_arr(size_t size) {
+	   vector<T> arr;
+	   for (int i = 0; i < size; i++)
+		   arr.push_back(i);
+	   return arr;
+   }
+
+   template<typename T>
+   vector<T> back_sorted_mas(size_t size) {
+	   vector<T> arr;
+	   for (int i = size; i > 0; i--)
+		   arr.push_back(i);
+	   return arr;
+   }
+
 }
