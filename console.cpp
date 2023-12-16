@@ -26,9 +26,25 @@ int main() {
 	vector<size_t> size{ 1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000,50000,100000 };
 
 	//for (size_t i = 0; i < size.size(); ++i) {
-	//	stats stat = average_stats(size[i], insert_sort);
-	//	stats stat1 = average_stats(size[i], quick_sort);
-	//	stats stat2 = average_stats(size[i], comb_sort);
+	//	/*stats stat = average_stats<int>(size[i], insert_sort);*/
+	//	stats stat = average_stats<int>(size[i], quick_sort);
+	//	/*stats stat = average_stats<int>(size[i], comb_sort);*/
+	//	cout << stat;
+	//}
+
+	//for (int i = 0; i < 100; i++) {
+	//	vector<int> a = random_seed(-100, 100, 1000, i);
+	//	stats b = insert_sort(a);
+	//	cout << a;
+	//	cout << b;
+	//}
+
+	//for (size_t i = 0; i < size.size(); ++i) {
+	//	vector<int> mas = sorted_arr<int>(size[i]);
+	//	/*vector<int> mas = reverse<int>(size[i]);*/
+	//	/*stats stat = insert_sort(mas);*/
+	//	stats stat = quick_sort(mas);
+	//	/*stats stat = comb_sort(mas);*/
 	//	cout << stat;
 	//}
 

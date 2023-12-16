@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdexcept>
 #include <random>
+#include <stack>
 
 using namespace std;
 
@@ -54,36 +55,28 @@ namespace sorting {
    }
 
    template<typename T>
-   void swap(T& a, T& b, stats& stats) {
+   void swap(T& a, T& b) {
 	   T temp = a;
 	   a = b;
 	   b = temp;
-	   stats.copy_count += 3;
    }
 
    template<typename T>
-   stats insert_sort(vector<T>& arr) {
+   stats insert_sort(vector<T>& mas) {
 	   stats stats;
-
-	   for (size_t i = 0; i < arr.size() - 1; ++i) {
-		   size_t minIndex = i;
-
-		   for (size_t j = i + 1; j < arr.size(); ++j) {
-			   ++stats.comparison_count;
-			   if (arr[j] < arr[minIndex])
-				   minIndex = j;
-		   }
-
-		   if (minIndex != i) {
-			   std::swap(arr[i], arr[minIndex]);
-			   ++stats.copy_count;
+	   for (int i = 1; i < mas.size(); i++) {
+		   for (int j = i; j > 0; j--) {
+			   stats.comparison_count++;
+			   if (mas[j - 1] > mas[j]) {
+				   swap(mas[j - 1], mas[j]);
+				   stats.copy_count += 2;
+			   }
 		   }
 	   }
-
 	   return stats;
    }
-
-   template<typename T>
+    
+   /*template<typename T>
    int partition(std::vector<T>& arr, int low, int high, stats& s) {
 	   T pivot = arr[high];
 	   int i = (low - 1);
@@ -114,6 +107,49 @@ namespace sorting {
 	   stats s;
 	   quick_sort(arr, 0, arr.size() - 1, s);
 	   return s;
+   }*/
+
+   template<class T>
+   stats quick_sort(std::vector<T>& arr) {
+	   stats stat;
+	   std::stack<T> stack;
+	   stack.push(0);
+	   stack.push(arr.size() - 1);
+
+	   while (!stack.empty()) {
+		   int high = stack.top();
+		   stack.pop();
+		   int low = stack.top();
+		   stack.pop();
+
+		   T pivot = arr[high];
+		   int i = low - 1;
+
+		   for (int j = low; j <= high - 1; j++) {
+			   stat.comparison_count++;
+			   if (arr[j] <= pivot) {
+				   i++;
+				   stat.copy_count++;
+				   std::swap(arr[i], arr[j]);
+			   }
+		   }
+		   stat.copy_count++;
+		   std::swap(arr[i + 1], arr[high]);
+
+		   int p = i + 1;
+
+		   if (p - 1 > low) {
+			   stack.push(low);
+			   stack.push(p - 1);
+		   }
+
+		   if (p + 1 < high) {
+			   stack.push(p + 1);
+			   stack.push(high);
+		   }
+	   }
+
+	   return stat;
    }
 
    template<typename T>
@@ -132,7 +168,7 @@ namespace sorting {
 		   for (int i = 0; i < n - gap; i++) {
 			   s.comparison_count++;
 			   if (arr[i] > arr[i + gap]) {
-				   std::swap(arr[i], arr[i + gap]);
+				   swap(arr[i], arr[i + gap]);
 				   s.copy_count++;
 				   swapped = true;
 			   }
@@ -140,6 +176,7 @@ namespace sorting {
 	   }
 	   return s;
    }
+
 
    template<typename T>
    ostream& operator<<(ostream& os, const vector<T>& arr) {
@@ -169,18 +206,29 @@ namespace sorting {
 	   return arr;
    }
 
+   std::vector<int> random_seed(int a, int b, int n, int seed) {
+	   std::vector<int> res;
+	   std::mt19937 generator(seed);
+	   std::uniform_int_distribution<> distribution(a, b);
+	   for (int i = 0; i < n; i++) {
+		   int x = distribution(generator);
+		   res.push_back(x);
+	   }
+	   return res;
+   }
+
    template <typename T>
    stats average_stats(size_t size, stats(*sorted_f)(vector<T>& arr)) {
 	   stats average;
-
-	   for (int i = 0; i < 100; i++) {
-		   /*vector<T> a = random_arr(size);
-		   average += sorted_f(a);
-		   cout << i << " " << size << endl;*/
+	   int c = 5;
+	   for (int i = 0; i < c; i++) {
+		   vector<T> arr = random_arr<int>(size);
+		   average += sorted_f(arr);
+		   cout << i << " " << size << endl;
 	   }
 
-	   average.comparison_count /= 100;
-	   average.copy_count /= 100;
+	   average.comparison_count /= c;
+	   average.copy_count /= c;
 
 	   return average;
    }
@@ -194,7 +242,7 @@ namespace sorting {
    }
 
    template<typename T>
-   vector<T> back_sorted_mas(size_t size) {
+   vector<T> reverse(size_t size) {
 	   vector<T> arr;
 	   for (int i = size; i > 0; i--)
 		   arr.push_back(i);
